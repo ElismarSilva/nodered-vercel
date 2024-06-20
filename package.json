@@ -1,24 +1,340 @@
-{
-	"name": "nodered-on-cloud",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"build": "npm install",
-		"test": "node index.js",
-		"start": "node ./node_modules/node-red/red.js --userDir ./"
-	},
-	"keywords": [],
-	"author": "alerox",
-	"license": "ISC",
-	"dependencies": {
-		"express": "latest",
-		"node-red": "latest",
-		"node-red-contrib-ethereum": "https://github.com/alinonet/truffle",
-		"node-red-contrib-fs": "latest",
-		"node-red-contrib-telegrambot-home": "latest",
-		"node-red-dashboard": "latest",
-		"node-red-node-mongodb": "latest",
-		"node-red-node-ui-table": "latest"
-	}
-}
+[
+    {
+        "id": "729942b3f3e15c98",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "71ac48d39787b3c4",
+        "type": "mqtt in",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "topic": "btn_status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "10c5feeab6d3159e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "aef6b377ca5762fc"
+            ]
+        ]
+    },
+    {
+        "id": "aef6b377ca5762fc",
+        "type": "debug",
+        "z": "729942b3f3e15c98",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9de7b21405431d2b",
+        "type": "mqtt in",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "topic": "BUTTON_ON",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "10c5feeab6d3159e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "aef6b377ca5762fc",
+                "c31a1d6a06bbf996"
+            ]
+        ]
+    },
+    {
+        "id": "a3abacb334b1f754",
+        "type": "mqtt out",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "topic": "BUTTON_ON",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "10c5feeab6d3159e",
+        "x": 620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a4cc320a9df5534c",
+        "type": "ui_button",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "group": "bc1fb429d631b202",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Alimentar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "Green",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "a3abacb334b1f754",
+                "c31a1d6a06bbf996"
+            ]
+        ]
+    },
+    {
+        "id": "60a8aa5a53d23de2",
+        "type": "mqtt in",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "topic": "horasProxima",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "10c5feeab6d3159e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "aef6b377ca5762fc"
+            ]
+        ]
+    },
+    {
+        "id": "c31a1d6a06bbf996",
+        "type": "ui_chart",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "group": "bc1fb429d631b202",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Histórico de Alimentação Manual",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": "1",
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 520,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d94e533c7a88fbf4",
+        "type": "ui_chart",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "group": "f373d04947060997",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Últmas Alimentações ",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "1",
+        "ymax": "2",
+        "removeOlder": "7",
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 480,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9f418725f610911",
+        "type": "mqtt in",
+        "z": "729942b3f3e15c98",
+        "name": "",
+        "topic": "horasUltima",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "10c5feeab6d3159e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "aef6b377ca5762fc",
+                "d94e533c7a88fbf4"
+            ]
+        ]
+    },
+    {
+        "id": "9f523a2aa70e925e",
+        "type": "ui_spacer",
+        "z": "729942b3f3e15c98",
+        "name": "spacer",
+        "group": "bc1fb429d631b202",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "12b84c53d2456056",
+        "type": "ui_spacer",
+        "z": "729942b3f3e15c98",
+        "name": "spacer",
+        "group": "bc1fb429d631b202",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5ef1af9160430e7d",
+        "type": "ui_spacer",
+        "z": "729942b3f3e15c98",
+        "name": "spacer",
+        "group": "f373d04947060997",
+        "order": 1,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "10c5feeab6d3159e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "3",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bc1fb429d631b202",
+        "type": "ui_group",
+        "name": "Alimentação Manual",
+        "tab": "a1675a04f832241c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f373d04947060997",
+        "type": "ui_group",
+        "name": "Alimentação",
+        "tab": "a1675a04f832241c",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a1675a04f832241c",
+        "type": "ui_tab",
+        "name": "Feed Pet",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
